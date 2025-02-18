@@ -12,7 +12,8 @@ function App() {
       TCA Foos Ball
     </h1>
     <button
-      className='btn btn-primay'
+      className='btn btn-secondary btn-soft btn-xl'
+      
     >
       Play Foos Ball
     </button>
