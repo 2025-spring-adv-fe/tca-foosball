@@ -16,7 +16,7 @@ function App() {
 
       >
         <button
-          className='btn btn-secondary btn-soft btn-xl'
+          className='btn btn-secondary btn-soft btn-xl w-full lg:w-auto text-nowarp'
 
         >
           Play Foos Ball
@@ -29,11 +29,11 @@ function App() {
         </h2>
 
 
-
-
-
-
-        <div
+        <div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+            
+          >
+ <div
           className="card w-full bg-base-100 card-lg shadow-sm mt-4"
 
         >
@@ -72,6 +72,25 @@ function App() {
           </div>
         </div>
 
+
+        <div
+          className="card w-full bg-base-100 card-lg shadow-sm mt-4"
+
+        >
+          <div
+            className="card-body"
+          >
+            <h2
+              className="card-title"
+
+            >
+              Leaderboard...
+            </h2>
+            <p>
+              Leaderboard coming soon ....
+            </p>
+          </div>
+        </div>
 
         <div
           className="card w-full bg-base-100 card-lg shadow-sm mt-4"
@@ -135,31 +154,9 @@ function App() {
             <div className="chat chat-end">
               <div className="chat-bubble chat-bubble-error">It's never happened before.</div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
-
-
-
-
+        </div>
 
       </div>
     </div>
