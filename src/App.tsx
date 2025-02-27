@@ -13,7 +13,9 @@ function App() { // Main App component
       {/* Main Container */}
       <div className="p-4">
         {/* Play Button */}
-        <button className='btn btn-secondary btn-soft btn-xl w-full lg:w-auto text-nowrap'>
+        <button 
+          className='btn btn-secondary btn-soft btn-xl w-full lg:w-auto text-nowrap'
+        >
           Play Foos Ball
         </button>
 
