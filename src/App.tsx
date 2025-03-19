@@ -7,6 +7,8 @@
   } from 'react-router';
 
   import { Home } from './Home'
+  import { Setup } from './Setup';
+  import { Play } from './Play';
   
   const  App = () => {
     
@@ -28,6 +30,19 @@
             <Home />
           }
         />
+        <Route 
+          path='/'
+          element={ 
+            <Setup />
+          }
+        />
+        <Route 
+          path='/play'
+          element={ 
+            <Play />
+          }
+        />
+
       </Routes>
     </HashRouter>
    </div>
