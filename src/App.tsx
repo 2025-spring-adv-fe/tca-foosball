@@ -1,8 +1,22 @@
-import { useState } from 'react'
-import './App.css'
 
-function App() {
-  
+  import './App.css'
+
+  const App = (
+    // props: any
+
+    // Destructuring....
+  {
+    timestamp
+    , magicNumber
+  }
+) => {
+    
+
+    console.log(
+      "App component Func Called !!!"
+    // , typeof(props)
+    // , props
+  );
 
   return (
    <div>
@@ -11,6 +25,9 @@ function App() {
     >
       TCA Foos Ball
     </h1>
+    <p>
+      { timestamp } - { magicNumber }
+    </p>
     <button
       className='btn btn-secondary btn-soft btn-xl'
       
@@ -20,6 +37,7 @@ function App() {
 
    </div>
   )
+
 }
 
 export default App
