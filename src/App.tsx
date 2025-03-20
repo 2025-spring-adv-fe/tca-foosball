@@ -31,7 +31,7 @@
           }
         />
         <Route 
-          path='/'
+          path='/setup'
           element={ 
             <Setup />
           }
