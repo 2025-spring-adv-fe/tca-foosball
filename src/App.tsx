@@ -20,7 +20,7 @@
    
   );
 
-  const [totalGamesCount, setTotalGameCount] = useState(6);
+  const [totalGamesCount, setTotalGameCount] = useState(0);
 
   return (
    <div
