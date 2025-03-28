@@ -6,9 +6,11 @@
    
   } from 'react-router';
 
+
   import { Home } from './Home'
   import { Setup } from './Setup';
   import { Play } from './Play';
+  import { useState } from 'react'
   
   const  App = () => {
     
@@ -17,6 +19,8 @@
       "App component Func Called !!!"
    
   );
+
+  const [totalGamesCount, setTurnNumberCount] = useState(6);
 
   return (
    <div
@@ -27,19 +31,21 @@
         <Route 
           path='/'
           element={ 
-            <Home />
+            <Home
+              totalGameCount={totalGamesCount}
+            />
           }
         />
         <Route 
           path='/setup'
           element={ 
-            <Setup />
+            <Setup totalGameCount={0} />
           }
         />
         <Route 
           path='/play'
           element={ 
-            <Play />
+            <Play totalGameCount={0} />
           }
         />
 
