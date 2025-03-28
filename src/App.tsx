@@ -20,7 +20,7 @@
    
   );
 
-  const [totalGamesCount, setTurn1NumberCount] = useState(6);
+  const [totalGamesCount, setTotalGameCount] = useState(6);
 
   return (
    <div
@@ -47,7 +47,9 @@
           path='/play'
           element={ 
             <Play 
-              totalGameCount={totalGamesCount} />
+              totalGameCount={totalGamesCount} 
+              setTotalGameCount={setTotalGameCount}
+            />
           }
         />
 
