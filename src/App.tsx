@@ -68,7 +68,7 @@ import { GameResult } from './GameResults';
    
   );
 
-  const [totalGamesCount, setTotalGameCount] = useState(0);
+  const [GameResults, setGameResults] = useState(dummyGameResults);
 
   return (
    <div
@@ -80,7 +80,7 @@ import { GameResult } from './GameResults';
           path='/'
           element={ 
             <Home
-              totalGameCount={totalGamesCount}
+              totalGameCount={GameResults.length}
             />
           }
         />
@@ -88,15 +88,14 @@ import { GameResult } from './GameResults';
           path='/setup'
           element={ 
             <Setup 
-              totalGameCount={totalGamesCount} />
+              totalGameCount={GameResults.length} />
           }
         />
         <Route 
           path='/play'
           element={ 
             <Play 
-              totalGameCount={totalGamesCount} 
-              setTotalGameCount={setTotalGameCount}
+              totalGameCount={GameResults.length} 
             />
           }
         />
