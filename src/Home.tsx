@@ -22,7 +22,7 @@ export const Home: React.FC<HomeProps> = ({
             >
                 Home ({totalGameCount} games played)
             </h3>
-            <button 
+            <button
                 className="btn btn-active btn-secondry btn-lg mt-4"
                 onClick={
                     () => nav("/setup")
@@ -31,7 +31,24 @@ export const Home: React.FC<HomeProps> = ({
             >
                 Play Foosball
             </button>
-        </>
 
+            <div
+                className="card w-full bg-base-100 card-md shadow-sm mt-4"
+            >
+                <div
+
+                    className="card-body"
+                >
+                    <h2
+                        className="card-title"
+                    >
+                        Leaderboard
+                    </h2>
+                    <p>
+                        Leadboard goes here!!
+                    </p>
+                </div>
+            </div>
+        </>
     );
 };
