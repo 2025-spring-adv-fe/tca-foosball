@@ -68,7 +68,20 @@ import { GameResult, getLeaderboard } from './GameResults';
    
   );
 
-  const [GameResults, setGameResults] = useState(dummyGameResults);
+  // 
+  // Hooks..
+  //
+
+  const [gameResults, setGameResults] = useState(dummyGameResults);
+//
+// Others code (not hooks)
+//
+const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+ [
+  ...gameResults
+  , newGameResult
+ ]
+);
 
   return (
    <div
@@ -80,9 +93,9 @@ import { GameResult, getLeaderboard } from './GameResults';
           path='/'
           element={ 
             <Home
-              totalGameCount={GameResults.length}
+              totalGameCount={gameResults.length}
               leaderboardData={
-                getLeaderboard(GameResults)
+                getLeaderboard(gameResults)
               }
             />
           }
@@ -91,14 +104,15 @@ import { GameResult, getLeaderboard } from './GameResults';
           path='/setup'
           element={ 
             <Setup 
-              totalGameCount={GameResults.length} />
+              totalGameCount={gameResults.length} />
           }
         />
         <Route 
           path='/play'
           element={ 
             <Play 
-              totalGameCount={GameResults.length} 
+              totalGameCount={gameResults.length} 
+              addNewGameResult={addNewGameResult}
             />
           }
         />
