@@ -72,7 +72,9 @@ import { GameResult, getLeaderboard } from './GameResults';
   // Hooks..
   //
 
-  const [gameResults, setGameResults] = useState(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
+
 //
 // Others code (not hooks)
 //
