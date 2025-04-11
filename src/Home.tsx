@@ -44,9 +44,42 @@ export const Home: React.FC<HomeProps> = ({
                     >
                         Leaderboard
                     </h2>
-                    <p>
-                        Leadboard goes here!!
-                    </p>
+
+                    <div 
+                        className="overflow-x-auto"
+                    >
+                        <table 
+                            className="table"
+                        >
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th>W</th>
+                                    <th>L</th>
+                                    <th>AVG</th>
+                                    <th>PLAYER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    leaderboardData.map(
+                                        x => (
+
+
+                                            <tr>
+                                            <td>{x.wins}</td>
+                                            <td>{x.losses}</td>
+                                            <td>{x.average}</td>
+                                            <td>{x.player}</td>
+                                        </tr>     
+                                        )
+                                    )
+                                }
+                                {/* row 1 */}
+                              
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>
