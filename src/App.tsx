@@ -6,7 +6,7 @@
    
   } from 'react-router';
 
-  import { Home } from './Home'
+  import { AppTitle, Home } from './Home'
   import { Setup } from './Setup';
   import { Play } from './Play';
   import { useState } from 'react'
@@ -70,6 +70,7 @@ import { GameResult, getLeaderboard } from './GameResults';
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
+  const [title, setTitle] = useState(AppTitle);
 //
 // Others code (not hooks)
 //
@@ -86,7 +87,7 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
    >
     <div className="navbar bg-base-300 shadow-lg">
       <h1 className="text-xl font-bold">
-        Fossball
+       { title }
       </h1>
     </div>
     <div className="p-4">
@@ -99,13 +100,16 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
               leaderboardData={
                 getLeaderboard(gameResults)
               }
+              setTitle={setTitle}
             />
           }
         />
         <Route 
           path='/setup'
           element={ 
-            <Setup />
+            <Setup
+              setTitle={setTitle}
+            />
           }
         />
         <Route 
@@ -113,6 +117,7 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           element={ 
             <Play 
               addNewGameResult={addNewGameResult}
+              setTitle={setTitle}
             />
           }
         />

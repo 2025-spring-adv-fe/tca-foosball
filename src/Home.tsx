@@ -1,14 +1,21 @@
 import { useNavigate } from "react-router";
 import { LeaderboardEntry } from "./GameResults";
 
+export const AppTitle = "fossball";
+
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
+    setTitle: (t: string) => void;
 };
 
 export const Home: React.FC<HomeProps> = ({
     leaderboardData
+    , setTitle
 }) => {
 
+    setTitle("AppTitle");
+
+    
     // Use a react for hook navigation...
     const nav = useNavigate();
 
