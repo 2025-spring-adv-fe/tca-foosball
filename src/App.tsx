@@ -96,7 +96,6 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           path='/'
           element={ 
             <Home
-              totalGameCount={gameResults.length}
               leaderboardData={
                 getLeaderboard(gameResults)
               }
@@ -106,15 +105,13 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
         <Route 
           path='/setup'
           element={ 
-            <Setup 
-              totalGameCount={gameResults.length} />
+            <Setup />
           }
         />
         <Route 
           path='/play'
           element={ 
             <Play 
-              totalGameCount={gameResults.length} 
               addNewGameResult={addNewGameResult}
             />
           }
