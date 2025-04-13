@@ -63,11 +63,6 @@ import { GameResult, getLeaderboard } from './GameResults';
   const  App = () => {
     
 
-    console.log(
-      "App component Func Called !!!"
-   
-  );
-
   // 
   // Hooks..
   //
