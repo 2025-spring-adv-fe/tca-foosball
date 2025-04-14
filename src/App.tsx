@@ -6,7 +6,7 @@
    
   } from 'react-router';
 
-  import { Home } from './Home'
+  import { AppTitle, Home } from './Home'
   import { Setup } from './Setup';
   import { Play } from './Play';
   import { useState } from 'react'
@@ -63,11 +63,6 @@ import { GameResult, getLeaderboard } from './GameResults';
   const  App = () => {
     
 
-    console.log(
-      "App component Func Called !!!"
-   
-  );
-
   // 
   // Hooks..
   //
@@ -75,6 +70,7 @@ import { GameResult, getLeaderboard } from './GameResults';
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
+  const [title, setTitle] = useState(AppTitle);
 //
 // Others code (not hooks)
 //
@@ -87,40 +83,48 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
 
   return (
    <div
-    className='p-4'
+    className='p-0'
    >
+    <div className="navbar bg-base-300 shadow-lg">
+      <h1 className="text-xl font-bold">
+       { title }
+      </h1>
+    </div>
+    <div className="p-4">
     <HashRouter>
       <Routes>
         <Route 
           path='/'
           element={ 
             <Home
-              totalGameCount={gameResults.length}
               leaderboardData={
                 getLeaderboard(gameResults)
               }
+              setTitle={setTitle}
             />
           }
         />
         <Route 
           path='/setup'
           element={ 
-            <Setup 
-              totalGameCount={gameResults.length} />
+            <Setup
+              setTitle={setTitle}
+            />
           }
         />
         <Route 
           path='/play'
           element={ 
             <Play 
-              totalGameCount={gameResults.length} 
               addNewGameResult={addNewGameResult}
+              setTitle={setTitle}
             />
           }
         />
 
       </Routes>
     </HashRouter>
+    </div>
    </div>
   )
 }
