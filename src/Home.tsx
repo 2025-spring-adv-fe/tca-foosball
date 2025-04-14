@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
 import { LeaderboardEntry } from "./GameResults";
+import { useEffect } from "react";
+
 
 export const AppTitle = "fossball";
 
@@ -13,9 +15,12 @@ export const Home: React.FC<HomeProps> = ({
     , setTitle
 }) => {
 
-    setTitle("AppTitle");
+    // Passing a function 
+    useEffect(
+        () => setTitle(AppTitle)
+        , []
+    );
 
-    
     // Use a react for hook navigation...
     const nav = useNavigate();
 
