@@ -1,8 +1,16 @@
+import { durationFormatter } from "human-readable";
+
+const formatGameDuration = durationFormatter<string>();
+
+const formatLastPlayed = durationFormatter<string>({
+    allowMultiples: ["y", "mo", "d"]
+});
+
+
+
 // 
 // Exported interface 
 //
-
-
 export interface GameResult {
     winner: string;
     players: string[];
@@ -24,7 +32,6 @@ export interface GeneralFacts {
     shortestGame: string;
     longestGame: string;
 };
-
 
 //
 // Exported functions...
@@ -80,10 +87,10 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
     );
 
     return {
-        lastPlayed: `${lastPlayedInMilliseconds / 1000 / 60 / 60 / 24} days ago`
+        lastPlayed: `${formatLastPlayed(lastPlayedInMilliseconds)} ago`
         , totalGames: results.length
-        , shortestGame: `${Math.min(...gameDurationsInMilliseconds) / 1000 / 60} minutes`
-        , longestGame: `${Math.max(...gameDurationsInMilliseconds) / 1000 / 60} minutes`
+        , shortestGame: formatGameDuration(Math.min(...gameDurationsInMilliseconds))
+        , longestGame: formatGameDuration(Math.max(...gameDurationsInMilliseconds))
     };
 };
 
