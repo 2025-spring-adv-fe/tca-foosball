@@ -10,7 +10,7 @@
   import { Setup } from './Setup';
   import { Play } from './Play';
   import { useState } from 'react'
-  import { GameResult, getLeaderboard } from './GameResults';
+  import { GameResult, getGeneralFacts, getLeaderboard } from './GameResults';
   
   const dummyGameResults: GameResult[] = [
   {
@@ -64,40 +64,44 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
        { title }
       </h1>
     </div>
-    <div className="p-4">
-    <HashRouter>
-      <Routes>
-        <Route 
-          path='/'
-          element={ 
-            <Home
-              leaderboardData={
-                getLeaderboard(gameResults)
-              }
-              setTitle={setTitle}
-            />
-          }
-        />
-        <Route 
-          path='/setup'
-          element={ 
-            <Setup
-              setTitle={setTitle}
-            />
-          }
-        />
-        <Route 
-          path='/play'
-          element={ 
-            <Play 
-              addNewGameResult={addNewGameResult}
-              setTitle={setTitle}
-            />
-          }
-        />
+    <div className="p-4"
+    >
+      <HashRouter>
+        <Routes>
+          <Route 
+            path='/'
+            element={ 
+              <Home
+                leaderboardData={
+                  getLeaderboard(gameResults)
+                }
+                setTitle={setTitle}
+                generalFacts={
+                  getGeneralFacts(gameResults)
+                }
+              />
+            }
+          />
+          <Route 
+            path='/setup'
+            element={ 
+              <Setup
+                setTitle={setTitle}
+              />
+            }
+          />
+          <Route 
+            path='/play'
+            element={ 
+              <Play 
+                addNewGameResult={addNewGameResult}
+                setTitle={setTitle}
+              />
+            }
+          />
 
-      </Routes>
-    </HashRouter>
+        </Routes>
+      </HashRouter>
     </div>
    </div>
   )
