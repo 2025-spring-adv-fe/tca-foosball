@@ -51,8 +51,10 @@ export const Play: React.FC<PlayProps> = ({
                 {
                     currentPlayers.map(
                         x => (
-                            <button className="btn btn-active btn-secondry btn-lg mt-4"
-                            onClick={
+                            <button
+                                key={x} 
+                                className="btn btn-active btn-secondry btn-lg mt-4"
+                                onClick={
                                 () => {
                                     addNewGameResult({
                                         winner: x
