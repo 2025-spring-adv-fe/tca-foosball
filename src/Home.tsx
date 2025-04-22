@@ -97,6 +97,13 @@ export const Home: React.FC<HomeProps> = ({
                                 <th>
                                     {generalFacts.longestGame}
                                 </th>
+                                <tr></tr>
+                                <td>
+                                    AVG Turns per Game
+                                </td>
+                                <th>
+                                    {generalFacts.avgTurnsPerGame}
+                                </th>
                             </tbody>
                         </table>
                     </div>
