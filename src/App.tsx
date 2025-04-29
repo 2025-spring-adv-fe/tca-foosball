@@ -90,7 +90,7 @@ const App = () => {
     () => {
       const loadEmail = async () => {
 
-        const savedEmail = await localforage.getItem<boolean>("email") ?? "";
+        const savedEmail = await localforage.getItem<string>("email") ?? "";
 
         if (!ignore) {
           setEmailOnModal(savedEmail);
