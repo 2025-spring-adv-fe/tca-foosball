@@ -73,6 +73,7 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
             , totalGames: 0
             , shortestGame: "n/a"
             , longestGame: "n/a"
+            , avgTurnsPerGame: ""
         };
     }
 
