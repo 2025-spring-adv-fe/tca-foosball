@@ -10,7 +10,7 @@
   import { Setup } from './Setup';
   import { Play } from './Play';
   import { useEffect, useState } from 'react'
-  import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers } from './GameResults';
+  import { GameResult, getGamesByMonth, getGeneralFacts, getLeaderboard, getPreviousPlayers } from './GameResults';
 import localforage from 'localforage';
   
   const dummyGameResults: GameResult[] = [
@@ -152,6 +152,9 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
                 setTitle={setTitle}
                 generalFacts={
                   getGeneralFacts(gameResults)
+                }
+                gamesByMonthDate={
+                  getGamesByMonth(gameResults)
                 }
               />
             }

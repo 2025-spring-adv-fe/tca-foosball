@@ -9,12 +9,14 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
+    gamesByMonthDate: Array<[string, number]>
 };
 
 export const Home: React.FC<HomeProps> = ({
     leaderboardData
     , setTitle
     , generalFacts
+    , gamesByMonthDate
 }) => {
 
 
@@ -114,10 +116,10 @@ export const Home: React.FC<HomeProps> = ({
             >
                 <div
 
-                    className="card-body"
+                    className="card-body p-0"
                 >
                     <h2
-                        className="card-title"
+                        className="card-title ml-3 mt-3"
                     >
                         Leaderboard
                     </h2>
@@ -170,6 +172,67 @@ export const Home: React.FC<HomeProps> = ({
                             : (
                                 <p>
                                     Play a game of Foosball to see the leaderboard
+                                </p>
+                            )
+                    }
+                </div>
+            </div>
+
+            <div
+                className="card w-full bg-base-100 card-md shadow-sm mt-4"
+            >
+                <div
+
+                    className="card-body p-0"
+                >
+                    <h2
+                        className="card-title ml-3 mt-3"
+                    >
+                       Games by Month 
+                    </h2>
+                    {
+                        leaderboardData.length > 0 
+                            ? (
+                                <div
+                                    className="overflow-x-auto"
+                                >
+                                    <table
+                                        className="table"
+                                    >
+                                        {/* head */}
+                                        <thead>
+                                            <tr>
+                                                <th>Month</th>
+                                                <th># OF GAMES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                gamesByMonthDate.map(
+                                                    x => (
+
+                                                        <tr
+                                                            key={x[0]}
+                                                        >
+                                                            <td>
+                                                                {x[0]}
+                                                            </td>
+                                                            <td>
+                                                                {x[1]}
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                )
+                                            }
+                                            {/* row 1 */}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )
+                            : (
+                                <p className="mx-3 mb-3">
+                                   Play a game to see
                                 </p>
                             )
                     }
