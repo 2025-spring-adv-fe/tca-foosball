@@ -142,7 +142,7 @@ export const getGamesByMonth = (results: GameResult[]): Array<[string, number]> 
 
     const groupedStartMonths = Map.groupBy(
         gameStartMonths
-        , (x: any) => x
+        , (x: any) => x 
     );
 
     console.log(
