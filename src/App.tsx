@@ -19,30 +19,6 @@ import {
   , loadGamesFromCloud
 } from './tca-cloud-api';
 
-const dummyGameResults: GameResult[] = [
-  {
-    winner: "Hermione"
-    , players: [
-      "Hermione"
-      , "Harry"
-      , "Ron"
-    ]
-    , start: "2025-03-01T18:20:41.576Z"
-    , end: "2025-03-01T18:35:42.576Z"
-    , turnCount: 7
-  }
-  , {
-    winner: "Ron"
-    , players: [
-      "Hermione"
-      , "Ron"
-    ]
-    , start: "2025-03-05T18:40:27.576Z"
-    , end: "2025-03-05T18:45:42.576Z",
-    turnCount: 3
-  }
-];
-
 const App = () => {
 
 
@@ -52,8 +28,8 @@ const App = () => {
   // 
   const emailModalRef = useRef<HTMLDialogElement | null>(null);
 
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
-  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
+  // const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
 
@@ -68,18 +44,19 @@ const App = () => {
 
   useEffect(
     () => {
+
       const loadDarkMode = async () => {
 
         const savedDarkMode = await localforage.getItem<boolean>("darkMode") ?? false;
 
         if (!ignore) {
-          setDarkMode(savedDarkMode)
+          setDarkMode(savedDarkMode);
         }
       };
 
-      // 
-      // build the ignore-sandwich
-      // 
+      //
+      // Build the ignore-sandwich...
+      //
 
 
       // Bread on top...
@@ -87,7 +64,7 @@ const App = () => {
 
       loadDarkMode();
 
-      // Bread on top...
+      // Bread on bottom...
       return () => {
         ignore = true;
       };
@@ -97,34 +74,68 @@ const App = () => {
 
   useEffect(
     () => {
+
       const loadEmail = async () => {
 
         const savedEmail = await localforage.getItem<string>("email") ?? "";
 
         if (!ignore) {
           setEmailOnModal(savedEmail);
-
+          
           if(savedEmail.length > 0) {
             setEmailForCloudApi(savedEmail);
           }
         }
       };
 
-      // 
-      // build the ignore-sandwich
-      // 
-
+      //
+      // Build the ignore-sandwich...
+      //
 
       // Bread on top...
       let ignore = false;
 
-      loadEmail
-      // Bread on top...
+      loadEmail();
+
+      // Bread on bottom...
       return () => {
         ignore = true;
       };
     }
     , []
+  );
+
+  useEffect(
+    () => {
+
+      const loadGameResults = async () => {
+
+        const savedGameResults = await loadGamesFromCloud(
+          emailForCloudApi 
+          , "tca-five-crowns-25s"
+        );
+
+        if (!ignore) {
+          setGameResults(savedGameResults);
+        }
+      };
+
+      //
+      // Build the ignore-sandwich...
+      //
+      // Bread on top...
+      let ignore = false;
+
+      if (emailForCloudApi.length > 0) {
+        loadGameResults();
+      }
+
+      // Bread on bottom...
+      return () => {
+        ignore = true;
+      };
+    }
+    , [emailForCloudApi]
   );
 
   // 
@@ -266,7 +277,7 @@ const App = () => {
                     async () => {
                       const savedEmail = await localforage.setItem(
                       "email"
-                      , emailOnModal
+                      , emailOnModalRef
                     );
                     
                     if(savedEmail.length > 0) {
