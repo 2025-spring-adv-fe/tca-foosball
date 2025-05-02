@@ -13,6 +13,12 @@ import { useEffect, useRef, useState } from 'react'
 import { GameResult, getGamesByMonth, getGeneralFacts, getLeaderboard, getPreviousPlayers } from './GameResults';
 import localforage from 'localforage';
 
+
+import {
+  saveGameToCloud
+  , loadGamesFromCloud
+} from './tca-cloud-api';
+
 const dummyGameResults: GameResult[] = [
   {
     winner: "Hermione"
@@ -57,6 +63,9 @@ const App = () => {
 
   const [emailOnModalRef, setEmailOnModal] = useState("");
 
+  const [emailForCloudApi, setEmailForCloudApi] = useState("");
+
+
   useEffect(
     () => {
       const loadDarkMode = async () => {
@@ -94,6 +103,10 @@ const App = () => {
 
         if (!ignore) {
           setEmailOnModal(savedEmail);
+
+          if(savedEmail.length > 0) {
+            setEmailForCloudApi(savedEmail);
+          }
         }
       };
 
@@ -117,12 +130,31 @@ const App = () => {
   // 
   // Others code (not hooks)
   //
-  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
-    [
-      ...gameResults
-      , newGameResult
-    ]
-  );
+  const addNewGameResult = async (
+      newGameResult: GameResult
+    ) => {
+
+      copyTextToClipboard(
+        JSON.stringify(newGameResult)
+      )
+
+      if (emailForCloudApi.length > 0) {
+        await saveGameToCloud(
+          emailForCloudApi
+          , "tca-foosball"
+          , "NewGameResult"
+        );
+      }
+
+  // Optimistically update the lifted state with the new game result
+
+      setGameResults(
+        [
+          ...gameResults
+          , newGameResult 
+        ]
+      );
+    };
   //
   // Finally, retune the JSX, using any of the state calculated items 
   // from above
@@ -231,10 +263,16 @@ const App = () => {
                 <button 
                   className="btn"
                   onClick={
-                    async () => await localforage.setItem(
+                    async () => {
+                      const savedEmail = await localforage.setItem(
                       "email"
-                      , emailOnModalRef
-                    )
+                      , emailOnModal
+                    );
+                    
+                    if(savedEmail.length > 0) {
+                    setEmailForCloudApi(savedEmail);
+                    }
+                   }
                   }
                 >
                     save
@@ -295,3 +333,7 @@ const App = () => {
 }
 
 export default App
+function copyTextToClipboard(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
