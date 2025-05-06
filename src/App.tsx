@@ -112,7 +112,7 @@ const App = () => {
 
         const savedGameResults = await loadGamesFromCloud(
           emailForCloudApi 
-          , "tca-five-crowns-25s"
+          , "tca-foosball"
         );
 
         if (!ignore) {
@@ -145,15 +145,13 @@ const App = () => {
       newGameResult: GameResult
     ) => {
 
-      copyTextToClipboard(
-        JSON.stringify(newGameResult)
-      )
 
       if (emailForCloudApi.length > 0) {
         await saveGameToCloud(
           emailForCloudApi
           , "tca-foosball"
-          , "NewGameResult"
+          , newGameResult.end
+          , newGameResult
         );
       }
 

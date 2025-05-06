@@ -56,6 +56,7 @@ export const Play: React.FC<PlayProps> = ({
                                 className="btn btn-active btn-secondry btn-lg mt-4"
                                 onClick={
                                 () => {
+                                    console.log("papa")
                                     addNewGameResult({
                                         winner: x
                                         , players: currentPlayers
