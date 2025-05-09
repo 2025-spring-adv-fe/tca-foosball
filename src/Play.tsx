@@ -29,7 +29,7 @@ export const Play: React.FC<PlayProps> = ({
    
     return (
         <>
-            <h4 
+            {/* <h4 
                 className="text-lg font-semibold"
             >
                 Turn #{turnNumber}
@@ -44,7 +44,12 @@ export const Play: React.FC<PlayProps> = ({
                 >
                     +
                 </button>
-            </h4>
+            </h4> */}
+                {currentPlayers.length >= 2 && (
+                <div className="text-xl font-bold mt-2 mb-4 text-center">
+                    {currentPlayers} <span className="text-red-500">vs</span> {currentPlayers}
+            </div>
+                )}
             <div 
                 className="grid grid-cols-2 gap-2 mt-4"
             >
