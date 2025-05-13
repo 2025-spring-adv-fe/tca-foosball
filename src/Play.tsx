@@ -47,7 +47,7 @@ export const Play: React.FC<PlayProps> = ({
             </h4> */}
                 {currentPlayers.length >= 2 && (
                 <div className="text-xl font-bold mt-2 mb-4 text-center">
-                    {currentPlayers} <span className="text-red-500">vs</span> {currentPlayers}
+                    {currentPlayers[0]} <span className="text-red-500">vs</span> {currentPlayers[1]}
             </div>
                 )}
             <div 
