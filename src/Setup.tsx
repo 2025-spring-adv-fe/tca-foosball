@@ -95,8 +95,8 @@ export const Setup: React.FC<SetupProps> = ({
             >  
               {
                 twoTwoSevenPlayersChosen
-                ? "start Playing"
-                : "Choose 2-7 Players"
+                ? "Start Playing"
+                : "Choose 2-4 Players"
               }
             </button>
             <div className="mt-4 flex">
